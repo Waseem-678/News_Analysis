@@ -1,0 +1,49 @@
+ {% extends 'base.html' %}
+{% block content %}
+<!--<img src="{{ images.url }}">-->
+<h1 class="mt-2 details">Details</h1>
+<hr class="mt-0 mb-4">
+
+
+ <div id="accordion">
+     {% for item in results %}
+          <div class="card">
+            <div class="card-header" id="header{{item.id}}">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{item.id}}" aria-expanded="true" aria-controls="collapse{{item.id}}">
+                  {{item.name}}
+                </button>
+              </h5>
+            </div>
+
+            <div id="collapse{{item.id}}" class="collapse" aria-labelledby="header{{item.id}}" data-parent="#accordion">
+              <div class="card-body">
+                <h4>Prediction: &nbsp;&nbsp;{{item.prediction}}</h4>
+                  <div class="row">
+                    <div class="col-6">
+                        <figure class="figure">
+                            <a href="{{item.word_cloud.url}}" target="_blank"><img src="{{item.word_cloud.url}}" class="figure-img img-thumbnail img-fluid rounded mt-0" alt="Word Cloud"></a>
+                            <figcaption class="figure-caption">Word Cloud.</figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-6">
+                        <figure class="figure">
+                            <a href="{{item.word_frequency_graph.url}}" target="_blank"><img src="{{item.word_frequency_graph.url}}" class="figure-img img-thumbnail img-fluid rounded mt-0" alt="Word Frequency Graph"></a>
+                            <figcaption class="figure-caption">Word Frequency Graph.</figcaption>
+                        </figure>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+     {% endfor %}
+ </div>
+ {% endblock %}
+<!--{% for item in products%}-->
+<!--    <a href="#" target="_self"><img src="../media/images/word_cloud/{{item.name}}" height="250" width="250"></a>-->
+<!--    <a href="#" target="_self"><img src="../media/images/{{item.name}}" height="250" width="250"></a>-->
+<!--{%endfor%}-->
+<!--{% for image in images %}-->
+<!--&lt;!&ndash;<img src="{{ MEDIA_URL}}{{image.image.url}}">&ndash;&gt;-->
+<!--{% endfor %}-->
+
